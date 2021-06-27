@@ -6,12 +6,14 @@ namespace ImportTool1
     {
         static void Main(string[] args)
         {
+            Preparers preparers = new Preparers();
             Units orgunits = new Units();
 
             string source = ".\\source.xlsx";
             string destination = ".\\IMPORT_FILE_" + DateTime.Now.ToString("yyyyMMddHHmm") + ".xlsx";
 
             string[] units = orgunits.OrgUnits();
+            string[] prepPeople = preparers.Preppers();
 
             Console.WriteLine("Welcome to the file importing tool.  This will allow you to create");
             Console.WriteLine("one, two, a dozen, or hundreds of records that can be imported from");
@@ -21,8 +23,10 @@ namespace ImportTool1
             int genNum = Convert.ToInt32(genNumStr);
 
             string[] selectedUnitName = new string[genNum];
+            string[] selectedPreparers = new string[genNum];
 
             selectedUnitName = CollectionMaker(genNum, units, units.Length);
+            selectedPreparers = CollectionMaker(genNum, prepPeople, prepPeople.Length);
 
         }
 
