@@ -6,12 +6,14 @@ namespace ImportTool1
     {
         static void Main(string[] args)
         {
+            Locations locations = new Locations();
             Preparers preparers = new Preparers();
             Units orgunits = new Units();
 
             string source = ".\\source.xlsx";
             string destination = ".\\IMPORT_FILE_" + DateTime.Now.ToString("yyyyMMddHHmm") + ".xlsx";
 
+            string[] incidentLocations = locations.IncidentLocations();
             string[] units = orgunits.OrgUnits();
             string[] prepPeople = preparers.Preppers();
 
@@ -22,9 +24,11 @@ namespace ImportTool1
             string genNumStr = Console.ReadLine();
             int genNum = Convert.ToInt32(genNumStr);
 
+            string[] selectedLocations = new string[genNum];
             string[] selectedUnitName = new string[genNum];
             string[] selectedPreparers = new string[genNum];
 
+            selectedLocations = CollectionMaker(genNum, incidentLocations, incidentLocations.Length);
             selectedUnitName = CollectionMaker(genNum, units, units.Length);
             selectedPreparers = CollectionMaker(genNum, prepPeople, prepPeople.Length);
 
